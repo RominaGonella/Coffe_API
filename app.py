@@ -12,7 +12,7 @@ def hello_flask():
 
 @app.route('/inicio')
 def show_home():
-    return render_template('index.html')
+    return 'Hello world'
 
 # en flask app.route se debe escribir toda la palabra string
 @app.route('/<string:country>/<string:variety>/<float:aroma>/<float:aftertaste>/<float:acidity>/<float:body>/<float:balance>/<float:moisture>')
@@ -21,7 +21,7 @@ def result(country, variety, aroma, aftertaste, acidity, body, balance, moisture
     data = [country, variety, aroma, aftertaste, acidity, body, balance, moisture]
     posted = pd.DataFrame(np.array(data).reshape(1,8), columns = cols)
     # se carga el modelo
-    loaded_model = pickle.load(open('models/coffee_model.pkl', 'rb'))
+    loaded_model = pickle.load(open('coffee_model.pkl', 'rb'))
     # se predice con datos creados
     result = loaded_model.predict(posted)
     # salida a mostrar
